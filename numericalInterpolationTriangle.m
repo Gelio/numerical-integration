@@ -18,7 +18,7 @@ if nargin < 5
 end
 
 % Obliczenie wlasnosci podzialu
-[~, ~, hx, hy, P] = computeDivisionProperties(P0, P1, P2, n);
+[hx, hy, P] = computeDivisionProperties(P0, P1, P2, n);
 
 % Zerowanie wartosci kwadratury
 S = 0;
