@@ -7,9 +7,9 @@
 
 % Parametry:
 % Funkcja podcalkowa
-f = @(x, y)(x.^3);
+f = @(x, y)(x.^7 + x.^6 + y.^4 + y.^3);
 % Liczba okreslajaca ilosc podzialow
-n = 1;
+n = 16;
 
 
 % ======================================================================= %

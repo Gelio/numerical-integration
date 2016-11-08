@@ -9,6 +9,28 @@
 \usepackage{centernot}
 \setlength{\parskip}{1em}
 
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
 
 \begin{document}
 	\title{Sprawozdanie\\Metody Numeryczne 2, laboratorium 3}
@@ -188,9 +210,122 @@
 	
 	
 	\section{Przykłady}
+	W przykładach najpierw została obliczona prawdziwa wartość całki, a następnie porównane w tabeli wyniki metody z zadania oraz funkcji \textit{integral2}.
+	
 	\begin{enumerate}[label=\textbf{Przykład \arabic*}]
 		\item
-		TODO
+		Całka z wielomianu stopnia 3.
+		$$\iint_D f(x, y) \,dx\,dy = \iint_D x^3 \,dx\,dy = 0$$
+		$n = 1$
+		
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|r|c|c|}
+				\hline
+				                   & metoda z zadania & funkcja \textit{integral2} \\ \hline
+				przybliżenie całki &        0         & $1.47451 \times 10^{-17}$  \\ \hline
+				   czas obliczania &      2.6 ms      &          4.13 ms           \\ \hline
+			\end{tabular}
+		\end{table}
+	
+		Metoda z zadania jest dokładna (i powinna być, gdyż rząd kwadratury jest równy 4, a funkcja podcałkowa jest wielomianem stopnia 3), a także szybsza.
+		
+		
+		
+		\item
+		Całka z wielomianu stopnia 4.
+		$$\iint_D f(x, y) \,dx\,dy = \iint_D x^4 \,dx\,dy = \frac{2}{15} \approx 0.133333$$
+		$n = 1$
+		
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|r|c|c|}
+				\hline
+				                   & metoda z zadania & funkcja \textit{integral2} \\ \hline
+				przybliżenie całki &     0.144444     &          0.133333          \\ \hline
+				   czas obliczania &     6.19 ms      &           4.7 ms           \\ \hline
+			\end{tabular}
+		\end{table}
+	
+		W tym przypadku metoda z zadania okazała się gorsza od funkcji dostępnej w MATLABie, zarówno pod względem dokładności, jak i szybkości działania.
+		
+		
+		\item
+		Zwiększenie parametru $n$ w stosunku do poprzedniego przykładu.
+		$$\iint_D f(x, y) \,dx\,dy = \iint_D x^4 \,dx\,dy = \frac{2}{15} \approx 0.133333$$
+		$n = 10$
+		
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|r|c|c|}
+				\hline
+				                   & metoda z zadania & funkcja \textit{integral2} \\ \hline
+				przybliżenie całki &     0.133334     &          0.133333          \\ \hline
+				   czas obliczania &     16.34 ms     &          6.06 ms           \\ \hline
+			\end{tabular}
+		\end{table}
+	
+		Przy zwiększeniu ilości podziałów metoda osiąga lepsza dokładność, jednakże zmniejsza się jej szybkość. W tym przypadku nadal jest gorsza od funkcji \textit{integral2}.
+		
+		Podobną dokładność osiąga dopiero dla $n = 17$, jednakże wtedy jej czas działania około dziesięciokrotnie większy od MATLABowej alternatywy.
+		
+		
+		\item
+		Funkcja podcałkowa nie będąca wielomianem.
+		$$\iint_D f(x, y) \,dx\,dy = \iint_D (\sin x + \cos y) \,dx\,dy = 4 - 4\cos 1 \approx 1.83879$$
+		$n = 1$
+		
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|r|c|c|}
+				\hline
+				                   & metoda z zadania & funkcja \textit{integral2} \\ \hline
+				przybliżenie całki &      1.8392      &          1.83879           \\ \hline
+				   czas obliczania &     3.36 ms      &           2.9 ms           \\ \hline
+			\end{tabular}
+		\end{table}
+		
+		Po raz kolejny funkcja dostępna w MATLABie jest szybsza i dokładniejsza.
+		
+		Dla $n = 4$ metoda z zadania osiąga podobną dokładność.
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|r|c|c|}
+				\hline
+				                   & metoda z zadania & funkcja \textit{integral2} \\ \hline
+				przybliżenie całki &     1.83879      &          1.83879           \\ \hline
+				   czas obliczania &     4.66 ms      &          3.13 ms           \\ \hline
+			\end{tabular}
+		\end{table}
+	
+	
+	
+		\item
+		Wielomian stopnia 12.
+		$$\iint_D f(x, y) \,dx\,dy = \iint_D (x^7 + x^6 + y^4 + y^3) \,dx\,dy = \frac{43}{210} \approx 0.204762$$
+		$n = 1$
+		
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|r|c|c|}
+				\hline
+				                   & metoda z zadania & funkcja \textit{integral2} \\ \hline
+				przybliżenie całki &     0.254012     & 0.204762                   \\ \hline
+				   czas obliczania &     3.59 ms      & 6.96 ms                    \\ \hline
+			\end{tabular}
+		\end{table}
+	
+		W tym przypadku metoda z zadania okazała się być szybsza, ale nie dokładniejsza. Podobną dokładność osiąga dla $n = 16$:
+		
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|r|c|c|}
+				\hline
+				                   & metoda z zadania & funkcja \textit{integral2} \\ \hline
+				przybliżenie całki &     0.204762     & 0.204762                   \\ \hline
+				   czas obliczania &     40.65 ms     & 7.05 ms                    \\ \hline
+			\end{tabular}
+		\end{table}
 		
 	\end{enumerate}
 	
@@ -201,7 +336,11 @@
 	
 	\section{Wnioski}
 	\begin{enumerate}
-		\item TODO
+		\item Czas działania wzrasta kwadratowo wraz ze wzrostem parametru $n$.
+		
+		\item Metoda z zadania osiąga gorsze wyniki od funkcji \textit{integral2} dostępnej w MATLABie. Jest w stanie osiągnąć podobną dokładność, jednak kosztem znacznego zwiększenia się czasu potrzebnego na obliczenia.
+		
+		\item Jeżeli nie zależy nam na dokładności, można użyć metody z zadania z $n = 1$, wtedy jest bardzo prawdopodobnym, że będzie ona szybsza od funkcji \textit{integral2}.
 	\end{enumerate}
 
 	
@@ -216,7 +355,29 @@
 	
 	Pokazuje on także jak używać funkcji stworzonych na potrzeby tej metody do przybliżania całki na dowolnym trójkącie.
 	
+	\begin{lstlisting}[frame=single]
+	% Parametry:
+	% Funkcja podcalkowa
+	f = @(x, y)(x.^2 + y.^2);
+	% Liczba okreslajaca ilosc podzialow
+	n = 1;
 	
+	% Srodek rombu
+	P0 = [0 0];
+	% Wierzcholki rombu
+	P1 = [1 0];
+	P2 = [0 1];
+	P3 = [-1 0];
+	P4 = [0 -1];
+	
+	% Kwadratura dla trojkatow w poszczegolnych cwiartkach ukladu wspolrzednych
+	S1 = numericalInterpolationTriangle(f, P0, P1, P2, n); % I cwiartka
+	S2 = numericalInterpolationTriangle(f, P0, P2, P3, n); % II cwiartka
+	S3 = numericalInterpolationTriangle(f, P0, P3, P4, n); % III cwiartka
+	S4 = numericalInterpolationTriangle(f, P0, P4, P1, n); % IV cwiartka
+	
+	S = S1 + S2 + S3 + S4;
+	\end{lstlisting}
 	
 	
 	
