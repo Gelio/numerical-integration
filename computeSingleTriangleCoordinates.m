@@ -22,8 +22,8 @@ if mod(j, 2) == 0
     % Srodek ciezkosci szukanego trojkata znajduje sie blizej wierzcholka
     % P2 (trojkat jest "na gorze")
     P2ij = P2 + (i-1) * hy + (j-2)/2 * hx;
-    P0ij = P2ij + hy;
     P1ij = P2ij + hx;
+    P0ij = P1ij + hy;
 else
     % Srodek ciezkosci szukanego trojkata znajduje sie dalej od wierzcholka
     % P2 (trojkat jest "na dole")
