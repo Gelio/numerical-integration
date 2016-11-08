@@ -7,7 +7,7 @@
 
 % Parametry:
 % Funkcja podcalkowa
-f = @(x, y)(x.^2 - log(y+2));
+f = @(x, y)(x.^3);
 % Liczba okreslajaca ilosc podzialow
 n = 1;
 
