@@ -5,7 +5,7 @@
 % Wejscie:
 % f - funkcja podcalkowa (funkcja dwoch zmiennych)
 % * P0, P1, P2 - wierzcholki trojkata (wektory)
-% * n - liczba okreslajaca liczbe podzialow trojkata
+% * n - liczba okreslajaca liczbe podzialow trojkata (domyslnie 1)
 %
 % Wyjscie:
 % * S - wartosc kwadratury
@@ -13,6 +13,10 @@
 % Autor: Grzegorz Rozdzialik (D4, gr. lab. 2)
 
 function S = numericalInterpolationTriangle(f, P0, P1, P2, n)
+if nargin < 5
+    n = 1; % parametr domyslny
+end
+
 % Obliczenie wlasnosci podzialu
 [~, ~, hx, hy, P] = computeDivisionProperties(P0, P1, P2, n);
 
