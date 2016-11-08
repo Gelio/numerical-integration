@@ -114,8 +114,8 @@
 		Wtedy
 		\begin{align*}
 			P_2^{(i,j)} & = P_2 + (i-1)h_y + \frac{j-2}{2}h_x \\
-			P_0^{(i,j)} & = P_2^{(i,j)} + h_y                   \\
-			P_1^{(i,j)} & = P_2^{(i,j)} + h_x
+			P_1^{(i,j)} & = P_2^{(i,j)} + h_x                 \\
+			P_0^{(i,j)} & = P_1^{(i,j)} + h_y
 		\end{align*}
 		
 		
@@ -132,9 +132,9 @@
 		
 		Wtedy
 		\begin{align*}
-		P_2^{(i,j)} & = P_2 + (i-1)h_y + \frac{j-1}{2}h_x \\
-		P_0^{(i,j)} & = P_2^{(i,j)} + h_y                   \\
-		P_1^{(i,j)} & = P_0^{(i,j)} + h_x
+			P_2^{(i,j)} & = P_2 + (i-1)h_y + \frac{j-1}{2}h_x \\
+			P_0^{(i,j)} & = P_2^{(i,j)} + h_y                 \\
+			P_1^{(i,j)} & = P_0^{(i,j)} + h_x
 		\end{align*}
 	\end{enumerate}
 	gdzie $P_k^{(i,j)}$ oznacza współrzędne k-tego wierzchołka trójkąta o indeksach $(i, j)$ po podziale (analogicznie do rysunków w podpunktach).
@@ -182,9 +182,7 @@
 	
 	
 	\section{Poprawność metody}
-	TODO
-	
-	
+	Kwadratura \eqref{kwadratura} jest rzędu 4, zatem dla wielomianów stopnia co najwyżej 3 metoda daje poprawne wyniki, nawet z $n = 1$. Dla wielomianów stopnia wyższego przybliżenie nie jest dokładne, ale dokładność wzrasta wraz ze wzrostem parametru $n$.
 	
 	
 	
@@ -211,8 +209,12 @@
 	
 	
 	
-	\section{Funkcja do testowania}
-	TODO
+	\section{Skrypt do testowania}
+	Skrypt \textit{integrateDiamond} pozwala na ustalanie funkcji podcałkowej $f$ oraz parametru $n$ określającego ilość podziałów obszaru $D$. Wyświetla on także czas przybliżania całki tą metodą oraz porównuje wyniki z funkcją \textit{integral2} dostępną w MATLABie.
+	
+	Skrypt zgodnie z opisem metody dzieli obszar $D$ na 4 trójkąty przystające, a następnie każdy z nich na $n^2$ trójkątów przystających i na nich stosuje kwadraturę.
+	
+	Pokazuje on także jak używać funkcji stworzonych na potrzeby tej metody do przybliżania całki na dowolnym trójkącie.
 	
 	
 	
