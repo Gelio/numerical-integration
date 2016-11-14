@@ -177,10 +177,23 @@
 		
 		Funkcja oblicza współrzędne trójkąta o indeksie $(i, j)$ po podziale na podstawie współrzędnej $P_2$ trójkąta przed podziałem oraz wektorów $h_x, h_j$.
 		
+		\item $nodeValues = tabulateIntegrationNodeValues(f, P_2, n, h_x, h_y)$
 		
-		\item $S = integrateSingleTriangle(f, P_0, P_1, P_2, P)$
+		Funkcja tablicuje wartości w wierzchołkach oraz środkach boków trójkątów w celu późniejszego wielokrotnego wykorzystania. Jest to rozwiązanie bardziej efektywne niż obliczanie tych wartości każdorazowo dla poszczególnych trójkątów. Korzysta z wcześniej obliczonych parametrów $h_x$, $h_y$, ilości podziałów $n$ oraz współrzędnej $P_2$ trójkąta, na którym stosowana jest kwadratura. Zwraca macierz rozmiaru $2n+1 \times 2n+1$.
 		
-		Funkcja przybliża wartość całki z funkcji podcałkowej $f$ na trójkącie o polu $P$ i wierzchołkach $P_0, P_1, P_2$, używając do tego kwadratury \eqref{kwadratura}.
+		Powiązanie wartości z tej macierzy z współrzędnymi trójkąta zostało zilustrowane na rysunku \ref{triangle-nodes}.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[]{images/triangle-nodes.png}
+			\caption{Indeksy w stablicowanej macierzy dla trójkąta o indeksach ($i$, $j$)}
+			\label{triangle-nodes}
+		\end{figure}
+		
+		
+		\item $S = integrateSingleTriangle(f, P_0, P_1, P_2, P, i, j, nodeValues)$
+		
+		Funkcja przybliża wartość całki z funkcji podcałkowej $f$ na trójkącie o polu $P$ i wierzchołkach $P_0, P_1, P_2$, używając do tego kwadratury \eqref{kwadratura}. Trójkąt znajduje się na $j$-tej pozycji w $i$-tym wierszu podziału. Stablicowane wartości funkcji są przekazane w macierzy $nodeValues$ (jest to macierz zwrócona przez funkcję $tabulateIntegrationNodeValues$).
 		
 		
 		\item $S = numericalIntegrationTriangle(f, P_0, P_1, P_2, n)$

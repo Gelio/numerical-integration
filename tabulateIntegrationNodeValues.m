@@ -1,3 +1,27 @@
+% nodeValues = tabulateIntegrationNodeValues(f, P2, n, hx, hy) - funkcja
+% tablicuje wartosci w wierzcholkach oraz srodkach bokow trojkatow w celu
+% pozniejszego wielokrotnego wykorzystania. Jest to rozwiazanie bardziej
+% efektywne niz obliczanie tych wartosci kazdorazowo dla poszczegolnych
+% trojkatow. Korzysta z wczesniej obliczonych parametrow hx, hy,
+% ilosci podzialow n oraz wspolrzednej P2 trojkata, na ktorym odbywa sie
+% kwadratura. Zwraca macierz rozmiaru 2n+1 x 2n+1.
+%
+% Wejscie:
+% * f - funkcja podcalkowa (funkcja dwoch zmiennych)
+% * P2 - wspolrzedne wierzcholka P2 trojkata (punkt orientacyjny, wiecej
+% informacji w sprawozdaniu)
+% * n - liczba okreslajaca ilosc podzialow
+% * hx - wektor przesuniecia do nastepnej kolumny w trojkacie Di (kolumna
+% zawiera dwa trojkaty)
+% * hy - wektor przesuniecia do nastepnego wiersza w trojkacie Di
+%
+% Wyjscie:
+% * nodeValues - macierz rozmiaru 2n+1 x 2n+1 zawierajaca stablicowane
+% wartosci z punktach potrzebnych do kwadratury.
+%
+% Autor: Grzegorz Rozdzialik (D4, gr. lab. 2)
+
+
 function nodeValues = tabulateIntegrationNodeValues(f, P2, n, hx, hy)
 % Pierwiastek z ilosci punktow do stablicowania
 nodesAmountRoot = 2*n + 1;
