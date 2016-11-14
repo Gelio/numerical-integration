@@ -20,6 +20,9 @@ end
 % Obliczenie wlasnosci podzialu
 [hx, hy, P] = computeDivisionProperties(P0, P1, P2, n);
 
+% Tablicowanie wartosci w punktach potrzebnych do obliczenia kwadratury
+nodeValues = tabulateIntegrationNodeValues(f, P2, n, hx, hy);
+
 % Zerowanie wartosci kwadratury
 S = 0;
 
@@ -29,7 +32,7 @@ for i=1:n
         % Obliczenie wspolrzednych trojkata (i, j) po podziale
         [P0ij, P1ij, P2ij] = computeSingleTriangleCoordinates(P2, hx, hy, i, j);
         % Zastosowanie kwadratury na tym trojkacie
-        individualS = integrateSingleTriangle(f, P0ij, P1ij, P2ij, P);
+        individualS = integrateSingleTriangle(f, P0ij, P1ij, P2ij, P, i, j, nodeValues);
         % Zaktualizowanie ogolnej wartosci kwadratury
         S = S + individualS;
     end
