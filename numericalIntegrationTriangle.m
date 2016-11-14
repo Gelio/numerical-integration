@@ -1,4 +1,4 @@
-% S = numericalInterpolationTriangle(f, P0, P1, P2, n) - oblicza calke z
+% S = numericalIntegrationTriangle(f, P0, P1, P2, n) - oblicza calke z
 % funkcji f na trojkacie o wierzcholkach P0, P1, P2, dzielac go na n^2
 % trojkatow i na kazdym stosujac kwadrature rzedu 4.
 %
@@ -12,7 +12,7 @@
 %
 % Autor: Grzegorz Rozdzialik (D4, gr. lab. 2)
 
-function S = numericalInterpolationTriangle(f, P0, P1, P2, n)
+function S = numericalIntegrationTriangle(f, P0, P1, P2, n)
 if nargin < 5
     n = 1; % parametr domyslny
 end

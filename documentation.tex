@@ -183,7 +183,7 @@
 		Funkcja przybliża wartość całki z funkcji podcałkowej $f$ na trójkącie o polu $P$ i wierzchołkach $P_0, P_1, P_2$, używając do tego kwadratury \eqref{kwadratura}.
 		
 		
-		\item $S = numericalInterpolationTriangle(f, P_0, P_1, P_2, n)$
+		\item $S = numericalIntegrationTriangle(f, P_0, P_1, P_2, n)$
 		
 		Funkcja przybliża wartość całki z funkcji podcałkowej $f$ na trójkącie o wierzchołkach $P_0, P_1, P_2$, dzieląc go na $n^2$ trójkątów przystających.
 		
@@ -371,10 +371,10 @@
 	P4 = [0 -1];
 	
 	% Kwadratura dla trojkatow w poszczegolnych cwiartkach ukladu wspolrzednych
-	S1 = numericalInterpolationTriangle(f, P0, P1, P2, n); % I cwiartka
-	S2 = numericalInterpolationTriangle(f, P0, P2, P3, n); % II cwiartka
-	S3 = numericalInterpolationTriangle(f, P0, P3, P4, n); % III cwiartka
-	S4 = numericalInterpolationTriangle(f, P0, P4, P1, n); % IV cwiartka
+	S1 = numericalIntegrationTriangle(f, P0, P1, P2, n); % I cwiartka
+	S2 = numericalIntegrationTriangle(f, P0, P2, P3, n); % II cwiartka
+	S3 = numericalIntegrationTriangle(f, P0, P3, P4, n); % III cwiartka
+	S4 = numericalIntegrationTriangle(f, P0, P4, P1, n); % IV cwiartka
 	
 	S = S1 + S2 + S3 + S4;
 	\end{lstlisting}

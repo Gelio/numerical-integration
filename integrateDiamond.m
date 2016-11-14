@@ -27,10 +27,10 @@ P4 = [0 -1];
 
 % Kwadratura dla trojkatow w poszczegolnych cwiartkach ukladu wspolrzednych
 tic;
-S1 = numericalInterpolationTriangle(f, P0, P1, P2, n); % I cwiartka
-S2 = numericalInterpolationTriangle(f, P0, P2, P3, n); % II cwiartka
-S3 = numericalInterpolationTriangle(f, P0, P3, P4, n); % III cwiartka
-S4 = numericalInterpolationTriangle(f, P0, P4, P1, n); % IV cwiartka
+S1 = numericalIntegrationTriangle(f, P0, P1, P2, n); % I cwiartka
+S2 = numericalIntegrationTriangle(f, P0, P2, P3, n); % II cwiartka
+S3 = numericalIntegrationTriangle(f, P0, P3, P4, n); % III cwiartka
+S4 = numericalIntegrationTriangle(f, P0, P4, P1, n); % IV cwiartka
 customIntegrationTime = toc;
 
 % Sumowanie kwadratur dla poszczegolnych cwiartek
